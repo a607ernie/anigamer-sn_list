@@ -1,5 +1,17 @@
 # anigamer sn_list
 
+# 問題描述
+
+本專案為解決[aniGamerPlus](https://github.com/miyouzi/aniGamerPlus)需要手動產生`sn_list.txt`中內容的問題。
+
+# Usage
+
+1. 設置環境
+2. 執行`create_sn_list.py`，得到`sn_list.txt`
+3. 依照個人需求修改`sn_list.txt`並儲存
+4. 執行[aniGamerPlus](https://github.com/miyouzi/aniGamerPlus)
+
+
 # How to run
 
 - clone this repo
