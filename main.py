@@ -4,12 +4,10 @@ from bs4 import BeautifulSoup
 import re
 import time
 
+session = requests.Session()
+
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
-    'lang' : 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.6',
-    'accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'accept_encoding' : 'gzip, deflate',
-    'cache_control' : 'max-age=0'
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 }
 
 def folder_name(year,month):
@@ -29,7 +27,8 @@ def sn_list(text_payload,page_num):
     payload={}
     for pageNumber in range(1,page_num):
         url = 'https://ani.gamer.com.tw/animeList.php?page='+ str(pageNumber)+'&c=0&sort=1'
-        r = requests.get(url, headers=headers)
+        r = session.get(url, headers=headers)
+        
         sp = BeautifulSoup(r.text, 'html.parser')
         meta = sp.find('div',{'class': "theme-list-block"})
         
@@ -46,8 +45,7 @@ def sn_list(text_payload,page_num):
 
             # get anime sn
             
-            req_page = requests.get("https://ani.gamer.com.tw/"+str(item['href']), headers=headers)
-            
+            req_page = session.get("https://ani.gamer.com.tw/"+str(item['href']), headers=headers)
             # delay 0.5s.
             time.sleep(0.5)
             
