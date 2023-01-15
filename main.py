@@ -31,7 +31,7 @@ def sn_list(text_payload,page_num):
         
         sp = BeautifulSoup(r.text, 'html.parser')
         meta = sp.find('div',{'class': "theme-list-block"})
-        print(meta)
+        print(r.text)
         # from meta data extract each anime infomation
         for item in meta.find_all('a',{'class':'theme-list-main'}):
 
