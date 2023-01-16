@@ -58,13 +58,18 @@ def sn_list(text_payload,page_num):
                 "folder_name":folder,
             }
             
+            # 
             if data['folder_name'] not in payload.keys():
                 _json = []
 
+            # sn_list.txt has anime and check new data is not in mark.
+            # e.g. #bleach  => I don't want to download this anime
+            # so , if new data has this title , ignore it.
             if text_payload != []:
                 if title not in text_payload:
                     _json.append(data)
                     payload[folder] = _json
+            # sn_list.txt has not anime
             else:
                 _json.append(data)
                 payload[folder] = _json
